@@ -58,31 +58,27 @@ Send Welcome Email
 
 ## Workflow
 
-![Workflow](screenshots/workflow.png)
+![Workflow](workflow.png)
 
 ---
 
 ## Registration Form
 
-![Form](screenshots/form.png)
+![Form](form.png)
 
 ---
 
 ## Google Sheets
 
-![Google Sheets](screenshots/google-sheet.png)
+![Google Sheets](google-sheet.png)
 
 ---
 
 ## Welcome Email
 
-![Email](screenshots/gmail.png)
+![Email](gmail.png)
 
----
 
-## Successful Workflow Execution
-
-![Execution](screenshots/execution.png)
 
 ---
 
@@ -98,7 +94,6 @@ n8n-Participant-Onboarding-Automation/
 ├── form.png
 ├── google-sheet.png
 ├── gmail.png
-│── execution.png
 └── LICENSE
 ```
 
