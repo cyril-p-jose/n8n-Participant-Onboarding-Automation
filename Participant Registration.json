@@ -1,0 +1,190 @@
+{
+  "name": "Participant Registration",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Participant Registration Form",
+        "formDescription": "Please fill in your details to register.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email ",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone",
+              "fieldType": "number",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "572e93db-8455-4530-8bb3-8a90c264b3f0",
+      "name": "On form submission",
+      "webhookId": "28292662-7609-4e01-b93a-69e4653698da"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/19gIQ7tl_P3fLy0RvESo32iWYseOnGVIhJOV_PAJdjB4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19gIQ7tl_P3fLy0RvESo32iWYseOnGVIhJOV_PAJdjB4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $now }}",
+            "Phone": "={{ $json.Phone }}",
+            "Email": "={{ $json[\"Email \"] }}",
+            "Name": "={{ $json[\"Full Name\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        160,
+        0
+      ],
+      "id": "c132bb3a-8a86-406f-9556-f9a3513232e8",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "LeChz1MsxKYbKrmy",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "Welcome to Our  n8n Automation Program",
+        "emailType": "text",
+        "message": "=Hello {{ $json.Name }},  Thank you for registering successfully.  We have received your registration details.  Welcome aboard!  Best Regards, Team",
+        "options": {
+          "senderName": "n8n Automation Program"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        368,
+        0
+      ],
+      "id": "4121d7ae-32bd-41dc-950e-56da4219a951",
+      "name": "Send a message",
+      "webhookId": "4d7abfe7-23ef-4ef7-97ae-b336b4a3c209",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "inU0G1fpnZ9mDJ5R",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": -1
+  },
+  "versionId": "0618b391-b416-49bb-b7e8-a61a090db559",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "538b010ddbca5d128594593d56f93d5b298176b54e24c042b164c98c7f66c9b3"
+  },
+  "nodeGroups": [],
+  "id": "SNn558DM9cEf4iKC",
+  "tags": []
+}
