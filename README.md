@@ -18,6 +18,7 @@ A no-code workflow automation project built using **n8n** that streamlines parti
 
 > Submit the form with your email address to experience the complete automation workflow.
 
+google sheet https://docs.google.com/spreadsheets/d/19gIQ7tl_P3fLy0RvESo32iWYseOnGVIhJOV_PAJdjB4/edit?gid=0#gid=0
 ---
 
 # ✨ Features
